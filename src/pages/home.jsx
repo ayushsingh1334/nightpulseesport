@@ -9,6 +9,18 @@ export default function Home() {
   const [activeCard, setActiveCard] = useState(0);
   const [activeTab, setActiveTab] = useState("battle");
 
+  // Helper to set active tab
+  const handleSetTab = (tab) => {
+    setActiveTab(tab);
+  };
+
+  // Helper to stop events on touch/mouse before click to avoid accidental navigation on mobile
+  const stopEvent = (e) => {
+    if (!e) return;
+    if (typeof e.preventDefault === "function") e.preventDefault();
+    if (typeof e.stopPropagation === "function") e.stopPropagation();
+  };
+
   const handleCarouselNav = (direction) => {
     setActiveCard((prev) => {
       if (direction === "next") return (prev + 1) % 3;
@@ -30,13 +42,13 @@ export default function Home() {
         statusColor: "text-indigo-400"
       },
       {
-        icon: "/icons/freefire.png",
+        icon: "/icons/Freefire.png",
         isImage: true,
         iconColor: "text-orange-400",
         bgColor: "bg-orange-500/10 border-orange-500/20",
         title: "Free Fire Cup",
         desc: "Fast-paced survival tournaments. Show your skills in the ultimate survival shooter arena.",
-        status: "Coming Soon",
+        status: "Registration Open",
         statusColor: "text-orange-400"
       },
       {
@@ -63,7 +75,7 @@ export default function Home() {
       },
       {
         icon: "lucide:puzzle",
-        isImage: false,
+        isImage: true,
         iconColor: "text-purple-400",
         bgColor: "bg-purple-500/10 border-purple-500/20",
         title: "Grandmaster Series",
@@ -73,7 +85,7 @@ export default function Home() {
       },
       {
         icon: "lucide:zap",
-        isImage: false,
+        isImage: true,
         iconColor: "text-yellow-400",
         bgColor: "bg-yellow-500/10 border-yellow-500/20",
         title: "Tactical Strategy",
@@ -85,7 +97,7 @@ export default function Home() {
     community: [
       {
         icon: "lucide:mic-2",
-        isImage: false,
+        isImage: true,
         iconColor: "text-pink-400",
         bgColor: "bg-pink-500/10 border-pink-500/20",
         title: "Casting & Streaming",
@@ -94,18 +106,18 @@ export default function Home() {
         statusColor: "text-pink-400"
       },
       {
-        icon: "lucide:trophy",
-        isImage: false,
+        icon: "lucide:users",
+        isImage: true,
         iconColor: "text-cyan-400",
         bgColor: "bg-cyan-500/10 border-cyan-500/20",
-        title: "Weekly Challenges",
-        desc: "Participate in community-wide challenges and competitions. Earn exclusive rewards, climb weekly leaderboards, and prove your skills against thousands of players.",
-        status: "Active",
+        title: "Clan Scrims",
+        desc: "Register your clan for daily practice matches against the best teams in the region. Build team chemistry and climb the competitive rankings.",
+        status: "Open",
         statusColor: "text-cyan-400"
       },
       {
         icon: "lucide:message-circle",
-        isImage: false,
+        isImage: true,
         iconColor: "text-blue-400",
         bgColor: "bg-blue-500/10 border-blue-500/20",
         title: "Community Discord",
@@ -298,113 +310,55 @@ export default function Home() {
             <div className="reveal opacity-0">
               <h2 className="font-heading text-4xl md:text-5xl font-medium tracking-tight mb-4 text-white">
                 Choose Your<br />
-                <span className="text-cyan-400">Battlefield</span>
+                <span className="text-gray-600">Battlefield</span>
               </h2>
               <p className="text-gray-500 max-w-sm text-base">From fast-paced survival to calculating strategy.</p>
             </div>
-          </div>
 
-          {/* Service Grid - Battle Only */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {tabContent.battle?.map((card, idx) => (
-              <div 
-                key={idx}
-                className={`glass-panel p-8 rounded-2xl group border border-white/5 reveal opacity-0 transition-all duration-500 hover:border-white/20 hover:shadow-lg ${
-                  idx === 0 ? "" : idx === 1 ? "delay-100" : "delay-200"
-                }`}
-              >
-                <div className={`w-14 h-14 ${card.bgColor} border rounded-2xl flex items-center justify-center ${card.iconColor} mb-6`}>
-                  {card.isImage ? (
-                    card.icon ? (
-                      <img src={card.icon} alt={card.title} className="w-full h-full object-cover rounded-xl" />
-                    ) : null
-                  ) : (
-                    <span className="iconify" data-icon={card.icon} data-width="28" data-height="28"></span>
-                  )}
-                </div>
-                <h3 className="font-heading text-lg font-medium mb-3 text-white tracking-tight">
-                  {card.title}
-                </h3>
-                <p className="text-sm text-gray-400 leading-relaxed mb-6">
-                  {card.desc}
-                </p>
-                {card.status && (
-                  <span className={`text-[10px] uppercase tracking-widest font-semibold ${card.statusColor}`}>
-                    {card.status}
-                  </span>
-                )}
+            <div className="reveal opacity-0 flex items-center justify-center">
+              {/* Minimalist Line Indicator */}
+              <div className="flex items-center gap-3">
+                {[
+                  { key: 'battle', color: 'indigo' },
+                  { key: 'strategy', color: 'purple' },
+                  { key: 'community', color: 'pink' }
+                ].map((mode) => (
+                  <button
+                    key={mode.key}
+                    type="button"
+                    onMouseDown={(e) => { e.preventDefault(); e.stopPropagation(); }}
+                    onTouchStart={(e) => { e.preventDefault(); e.stopPropagation(); }}
+                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleSetTab(mode.key); }}
+                    className="cursor-hover transition-all duration-300"
+                    aria-label={mode.key}
+                  >
+                    <div className={`h-0.5 transition-all duration-300 ${
+                      activeTab === mode.key 
+                        ? `w-8 bg-${mode.color}-500 shadow-lg shadow-${mode.color}-500/50` 
+                        : 'w-3 bg-white/20 hover:w-4'
+                    }`}></div>
+                  </button>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CHESS & STRATEGY SECTION */}
-      <section id="chess" className="py-32 relative z-10">
-        <div className="absolute top-0 left-6 md:left-12 z-20 hidden md:block -translate-y-1/2">
-          <span className="glass-panel px-3 py-1 rounded text-[10px] font-mono uppercase tracking-widest text-gray-500 border border-white/5">
-            [ 02. STRATEGY ]
-          </span>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-            <div className="reveal opacity-0">
-              <h2 className="font-heading text-4xl md:text-5xl font-medium tracking-tight mb-4 text-white">
-                Master the<br />
-                <span className="text-purple-400">Chessboard</span>
-              </h2>
-              <p className="text-gray-500 max-w-sm text-base">Elite tactical tournaments for strategic minds.</p>
             </div>
           </div>
 
-          {/* Service Grid - Chess Only */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                icon: "/icons/Chess.png",
-                isImage: true,
-                iconColor: "text-white",
-                bgColor: "bg-white/10 border-white/20",
-                title: "Rapid Chess",
-                desc: "Blitz and Bullet formats. Join chess tournaments with real-time rankings and competitive ladders. Test your tactical brilliance against elite players.",
-                status: "Coming Soon",
-                statusColor: "text-white"
-              },
-              {
-                icon: "lucide:chess-queen",
-                isImage: false,
-                iconColor: "text-yellow-400",
-                bgColor: "bg-yellow-500/10 border-yellow-500/20",
-                title: "Weekly Tournaments",
-                desc: "Compete every week in time-controlled matches. Build your rating and climb the global leaderboards with consistent performances.",
-                status: "Coming Soon",
-                statusColor: "text-yellow-400"
-              },
-              {
-                icon: "lucide:chess-king",
-                isImage: false,
-                iconColor: "text-purple-400",
-                bgColor: "bg-purple-500/10 border-purple-500/20",
-                title: "Grandmaster Series",
-                desc: "Elite strategic tournaments for chess masters with international competition. High prize pools and prestigious rankings for the ultimate chess experience.",
-                status: "Coming Soon",
-                statusColor: "text-purple-400"
-              }
-            ].map((card, idx) => (
+          {/* Dynamic Service Grid */}
+          <div className="service-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {(tabContent[activeTab] ?? []).map((card, idx) => (
               <div 
                 key={idx}
-                className={`glass-panel p-8 rounded-2xl group border border-white/5 reveal opacity-0 transition-all duration-500 hover:border-white/20 hover:shadow-lg ${
+                className={`glass-panel p-8 rounded-2xl cursor-hover group border border-white/5 reveal opacity-0 transition-all duration-500 ${
                   idx === 0 ? "" : idx === 1 ? "delay-100" : "delay-200"
                 }`}
               >
-                <div className={`w-14 h-14 ${card.bgColor} border rounded-2xl flex items-center justify-center ${card.iconColor} mb-6`}>
+                <div className={`w-12 h-12 ${card.bgColor} border rounded-2xl flex items-center justify-center ${card.iconColor} mb-6`}>
                   {card.isImage ? (
                     card.icon ? (
-                      <img src={card.icon} alt={card.title} className="w-full h-full object-cover rounded-xl" />
+                      <img src={card.icon} alt={card.title} className="w-full h-full object-cover" />
                     ) : null
                   ) : (
-                    <span className="iconify" data-icon={card.icon} data-width="28" data-height="28"></span>
+                    <span className="iconify" data-icon={card.icon} data-width="24" data-stroke-width="1.5"></span>
                   )}
                 </div>
                 <h3 className="font-heading text-lg font-medium mb-3 text-white tracking-tight">
@@ -414,7 +368,7 @@ export default function Home() {
                   {card.desc}
                 </p>
                 {card.status && (
-                  <span className={`text-[10px] uppercase tracking-widest font-semibold ${card.statusColor}`}>
+                  <span className={`text-[10px] uppercase tracking-widest ${card.statusColor}`}>
                     {card.status}
                   </span>
                 )}
@@ -424,59 +378,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* COMMUNITY SECTION */}
-      <section id="community" className="py-32 relative z-10">
-        <div className="absolute top-0 left-6 md:left-12 z-20 hidden md:block -translate-y-1/2">
-          <span className="glass-panel px-3 py-1 rounded text-[10px] font-mono uppercase tracking-widest text-gray-500 border border-white/5">
-            [ 03. COMMUNITY ]
-          </span>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-            <div className="reveal opacity-0">
-              <h2 className="font-heading text-4xl md:text-5xl font-medium tracking-tight mb-4 text-white">
-                Join the<br />
-                <span className="text-pink-400">Community</span>
-              </h2>
-              <p className="text-gray-500 max-w-sm text-base">Connect, compete, and grow with fellow gamers.</p>
-            </div>
-          </div>
-
-          {/* Service Grid - Community Only */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {tabContent.community?.map((card, idx) => (
-              <div 
-                key={idx}
-                className={`glass-panel p-8 rounded-2xl group border border-white/5 reveal opacity-0 transition-all duration-500 hover:border-white/20 hover:shadow-lg ${
-                  idx === 0 ? "" : idx === 1 ? "delay-100" : "delay-200"
-                }`}
-              >
-                <div className={`w-14 h-14 ${card.bgColor} border rounded-2xl flex items-center justify-center ${card.iconColor} mb-6`}>
-                  {card.isImage ? (
-                    card.icon ? (
-                      <img src={card.icon} alt={card.title} className="w-full h-full object-cover rounded-xl" />
-                    ) : null
-                  ) : (
-                    <span className="iconify" data-icon={card.icon} data-width="28" data-height="28"></span>
-                  )}
-                </div>
-                <h3 className="font-heading text-lg font-medium mb-3 text-white tracking-tight">
-                  {card.title}
-                </h3>
-                <p className="text-sm text-gray-400 leading-relaxed mb-6">
-                  {card.desc}
-                </p>
-                {card.status && (
-                  <span className={`text-[10px] uppercase tracking-widest font-semibold ${card.statusColor}`}>
-                    {card.status}
-                  </span>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
       {/* TOURNAMENTS SECTION */}
       <section id="tournaments" className="relative py-32 md:py-40 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
@@ -557,96 +458,143 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WHY CHOOSE NIGHTPULSE SECTION */}
-      <section id="why-choose" className="relative py-32 md:py-40 overflow-hidden">
+      {/* MEMBERSHIP SECTION */}
+      <section id="membership" className="relative py-32 md:py-40 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-20 text-center reveal opacity-0">
             <span className="inline-block mb-4 text-[10px] uppercase tracking-[0.3em] text-indigo-400">
-              What Sets Us Apart
+              Partnership & Support
             </span>
             <h2 className="font-heading text-4xl md:text-6xl font-semibold text-white tracking-tight">
-              Why Choose NightPulse
+              Become a NightPulse Partner
             </h2>
-            <p className="mt-6 text-gray-400 max-w-2xl mx-auto text-base leading-relaxed">
-              Built from the ground up for Indian esports enthusiasts. We bring innovation, security, and fairness to every tournament.
+            <p className="mt-6 text-gray-400 max-w-xl mx-auto text-base leading-relaxed">
+              Join our ecosystem and grow with us. Multiple ways to engage, compete, and build your legacy.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                icon: "lucide:gamepad-2",
-                title: "Secure & Fair Gaming",
-                desc: "Advanced anti-cheat system with real-time monitoring to ensure every match is played on equal footing. Your trust is our priority.",
-                color: "emerald",
-                linkText: "Learn More",
-                link: "/secure-fair-gaming"
-              },
-              {
-                icon: "lucide:handshake",
-                title: "Strategic Partnerships",
-                desc: "Collaborate with leading brands and organizations. Join our partner network and grow together in the esports ecosystem.",
-                color: "yellow",
-                linkText: "Learn More",
-                link: "mailto:nightpulsestudio.contactus@gmail.com?subject=Strategic Partnership Inquiry&body=Hello NightPulse Team,%0A%0AI am interested in exploring strategic partnership opportunities with NightPulse Esports.%0A%0APlease let me know how we can collaborate.%0A%0AThanks"
-              },
-              {
-                icon: "lucide:gift",
-                title: "Instant Payouts",
-                desc: "Quick and secure prize withdrawals. Earn rewards and access them immediately with transparent transactions.",
-                color: "pink",
-                linkText: "Learn More",
-                link: "https://drive.google.com/drive/folders/1o-0rut2QaXJloSVyP3H9Ioum-VF7_xYu?usp=sharing"
-              },
-              {
-                icon: "lucide:headphones",
-                title: "24/7 Support",
-                desc: "Dedicated support team ready to help. Questions about tournaments? We're here around the clock.",
-                color: "blue",
-                linkText: "Contact Us",
-                link: "mailto:nightpulsestudio.contactus@gmail.com"
-              },
-              {
-                icon: "lucide:users-round",
-                title: "Thriving Community",
-                desc: "Connect with passionate gamers, join Discord events, participate in exclusive meetups, and grow together.",
-                color: "cyan",
-                linkText: "Learn More",
-                link: "/join"
-              },
-              {
-                icon: "lucide:briefcase",
-                title: "Sponsorship Opportunities",
-                desc: "Partner with NightPulse and reach millions of esports enthusiasts. Build your brand with us.",
-                color: "purple",
-                linkText: "Learn More",
-                link: "mailto:nightpulsestudio.contactus@gmail.com?subject=Sponsorship Opportunity Inquiry&body=Hello NightPulse Team,%0A%0AI am interested in sponsorship opportunities with NightPulse Esports.%0A%0APlease provide details about available sponsorship packages.%0A%0AThank you"
-              }
-            ].map((item, idx) => (
-              <div
-                key={idx}
-                className={`group reveal opacity-0 ${
-                  idx === 0 ? "" : idx === 1 ? "delay-100" : idx === 2 ? "delay-200" : idx === 3 ? "delay-300" : idx === 4 ? "delay-500" : "delay-700"
-                }`}
-              >
-                <div className="glass-panel border border-white/5 rounded-2xl p-8 transition-all duration-500 hover:border-white/20 hover:shadow-xl h-full flex flex-col">
-                  <div className="flex items-start gap-3 mb-6">
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110 ${
-                      item.color ? `bg-${item.color}-500/10 border border-${item.color}-500/30` : "bg-purple-500/10 border border-purple-500/30"
-                    }`}>
-                      <span className={`iconify ${item.color ? `text-${item.color}-400` : "text-purple-400"}`} data-icon={item.icon} data-width="24" data-height="24"></span>
-                    </div>
-                    <a href={item.link} className="group/link flex-1">
-                      <h3 className="font-heading text-lg font-semibold text-white tracking-tight hover:text-indigo-400 transition-colors cursor-pointer">
-                        {item.title}
-                      </h3>
-                    </a>
-                  </div>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Community Tier */}
+            <div className="glass-panel rounded-3xl border border-white/10 p-8 reveal opacity-0">
+              <div className="mb-6">
+                <span className="inline-block px-3 py-1 bg-cyan-500/20 border border-cyan-500/30 rounded-full text-[10px] uppercase tracking-widest text-cyan-400 mb-4">
+                  Community
+                </span>
+                <h3 className="font-heading text-2xl text-white font-semibold mb-2">Join Free</h3>
+                <p className="text-gray-400 text-sm">No cost, full access</p>
               </div>
-            ))}
+              <div className="mb-6">
+                <span className="text-3xl font-heading text-white font-semibold">Always Free</span>
+              </div>
+              <ul className="space-y-3 text-gray-400 text-sm mb-8">
+                <li>✓ Access all public tournaments</li>
+                <li>✓ Community Discord & LFG</li>
+                <li>✓ Compete for glory & rankings</li>
+                <li>✓ Weekly tournaments & events</li>
+              </ul>
+              <button className="cursor-hover w-full px-6 py-3 border border-cyan-500/50 text-cyan-400 rounded-full text-[11px] uppercase tracking-widest font-semibold hover:bg-cyan-500/20 transition-colors">
+                Join Now
+              </button>
+            </div>
+
+            {/* Team Sponsor Tier */}
+            <div className="glass-panel rounded-3xl border border-indigo-500/30 p-8 reveal opacity-0 delay-100 relative overflow-hidden">
+              <div className="absolute top-0 right-0 px-3 py-1 bg-indigo-500/20 border-l border-b border-indigo-500/30">
+                <span className="text-[10px] uppercase tracking-widest text-indigo-400 font-semibold">Recommended</span>
+              </div>
+              <div className="mb-6">
+                <span className="inline-block px-3 py-1 bg-indigo-500/20 border border-indigo-500/30 rounded-full text-[10px] uppercase tracking-widest text-indigo-400 mb-4">
+                  Team Sponsor
+                </span>
+                <h3 className="font-heading text-2xl text-white font-semibold mb-2">Sponsored Teams</h3>
+                <p className="text-gray-400 text-sm">Elevate your squad</p>
+              </div>
+              <div className="mb-6">
+                <span className="text-2xl font-heading text-white font-semibold">Earn Rewards</span>
+                <p className="text-gray-400 text-xs mt-1">Prize pools & perks</p>
+              </div>
+              <ul className="space-y-3 text-gray-400 text-sm mb-8">
+                <li>✓ Exclusive team tournaments</li>
+                <li>✓ Direct sponsor support</li>
+                <li>✓ Prize pool access</li>
+                <li>✓ Team branding & visibility</li>
+                <li>✓ Coaching resources</li>
+              </ul>
+              <button className="cursor-hover w-full px-6 py-3 rounded-full bg-indigo-500 text-white text-[11px] uppercase tracking-widest font-semibold hover:bg-indigo-400 transition-colors">
+                Apply to Sponsor
+              </button>
+            </div>
+
+            {/* Org Partner Tier */}
+            <div className="glass-panel rounded-3xl border border-purple-500/30 p-8 reveal opacity-0 delay-200 relative overflow-hidden">
+              <div className="absolute top-0 right-0 px-3 py-1 bg-purple-500/20 border-l border-b border-purple-500/30">
+                <span className="text-[10px] uppercase tracking-widest text-purple-400 font-semibold">Enterprise</span>
+              </div>
+              <div className="mb-6">
+                <span className="inline-block px-3 py-1 bg-purple-500/20 border border-purple-500/30 rounded-full text-[10px] uppercase tracking-widest text-purple-400 mb-4">
+                  Organization
+                </span>
+                <h3 className="font-heading text-2xl text-white font-semibold mb-2">Org Partners</h3>
+                <p className="text-gray-400 text-sm">Build your empire</p>
+              </div>
+              <div className="mb-6">
+                <span className="text-2xl font-heading text-white font-semibold">Co-Create</span>
+                <p className="text-gray-400 text-xs mt-1">Partnership benefits</p>
+              </div>
+              <ul className="space-y-3 text-gray-400 text-sm mb-8">
+                <li>✓ Custom tournaments & events</li>
+                <li>✓ Revenue sharing model</li>
+                <li>✓ Platform integration</li>
+                <li>✓ Dedicated partnership manager</li>
+                <li>✓ Co-branded initiatives</li>
+              </ul>
+              <button className="cursor-hover w-full px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-purple-500 text-white text-[11px] uppercase tracking-widest font-semibold hover:from-purple-500 hover:to-purple-400 transition-colors">
+                Contact Us
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* GALLERY / HIGHLIGHTS SECTION */}
+      <section id="gallery" className="relative py-32 md:py-40 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-20 text-center reveal opacity-0">
+            <span className="inline-block mb-4 text-[10px] uppercase tracking-[0.3em] text-indigo-400">
+              Visual Feed
+            </span>
+            <h2 className="font-heading text-4xl md:text-6xl font-semibold text-white tracking-tight">
+              Match Highlights
+            </h2>
+            <p className="mt-6 text-gray-400 max-w-xl mx-auto text-base leading-relaxed">
+              Captured moments from our most intense competitive encounters.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="group relative overflow-hidden rounded-2xl glass-panel border border-white/10 reveal opacity-0 h-[250px]">
+              <img
+                src="https://images.unsplash.com/photo-1542751110-97427bbecf20?q=80&w=2069"
+                alt="Highlight 1"
+                className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </div>
+            <div className="group relative overflow-hidden rounded-2xl glass-panel border border-white/10 reveal opacity-0 delay-100 h-[250px]">
+              <img
+                src="https://images.unsplash.com/photo-1551836022-4c4c79ecde51?q=80&w=2070"
+                alt="Highlight 2"
+                className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </div>
+            <div className="group relative overflow-hidden rounded-2xl glass-panel border border-white/10 reveal opacity-0 delay-200 h-[250px]">
+              <img
+                src="https://images.unsplash.com/photo-1601991973451-f8d3a7d61c6e?q=80&w=2070"
+                alt="Highlight 3"
+                className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700 grayscale"
+              />
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </div>
           </div>
         </div>
       </section>

@@ -50,9 +50,9 @@ export default function Navbar() {
             </a>
           </div>
           <div className="hidden md:block">
-            <a href="https://discord.gg/5MJuZWsJeJ" target="_blank" rel="noopener noreferrer" className="cursor-hover inline-block px-5 py-2 border border-white/10 rounded-full text-[10px] font-semibold uppercase tracking-widest hover:bg-white hover:text-black hover:border-white transition-colors bg-white/5 backdrop-blur-sm text-white">
+            <button className="cursor-hover px-5 py-2 border border-white/10 rounded-full text-[10px] font-semibold uppercase tracking-widest hover:bg-white hover:text-black hover:border-white transition-colors bg-white/5 backdrop-blur-sm text-white">
               Discord
-            </a>
+            </button>
           </div>
           <button className="md:hidden text-white cursor-hover">
             <span

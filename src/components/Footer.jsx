@@ -27,28 +27,20 @@ export default function Footer() {
             <a href="#" className="cursor-hover hover:text-white transition-colors">Privacy</a>
           </div>
 
-          {/* Right Section - Contact Us & Social Media Icons */}
-          <div className="flex items-center gap-6">
-            {/* Contact Us */}
-            <a href="mailto:nightpulsestudio.contactus@gmail.com" className="text-[10px] uppercase tracking-widest text-gray-500 hover:text-indigo-400 transition-colors cursor-hover">
-              Contact Us
+          {/* Social Media Icons */}
+          <div className="flex items-center gap-3">
+            <a href="#" className="cursor-hover group flex items-center justify-center w-8 h-8 rounded-full bg-white/5 border border-white/10 hover:bg-indigo-500/20 hover:border-indigo-500/30 transition-all duration-300">
+              <span className="iconify text-white group-hover:text-indigo-400" data-icon="lucide:twitter" data-width="14"></span>
             </a>
-
-            {/* Social Media Icons */}
-            <div className="flex items-center gap-3">
-              <a href="https://x.com/nightpulsestu" className="cursor-hover group flex items-center justify-center w-8 h-8 rounded-full bg-white/5 border border-white/10 hover:bg-indigo-500/20 hover:border-indigo-500/30 transition-all duration-300">
-                <span className="iconify text-white group-hover:text-indigo-400" data-icon="lucide:twitter" data-width="14"></span>
-              </a>
-              <a href="https://www.instagram.com/nightpulse_esports/" className="cursor-hover group flex items-center justify-center w-8 h-8 rounded-full bg-white/5 border border-white/10 hover:bg-pink-500/20 hover:border-pink-500/30 transition-all duration-300">
-                <span className="iconify text-white group-hover:text-pink-400" data-icon="lucide:instagram" data-width="14"></span>
-              </a>
-              <a href="https://discord.gg/5MJuZWsJeJ" className="cursor-hover group flex items-center justify-center w-8 h-8 rounded-full bg-white/5 border border-white/10 hover:bg-purple-500/20 hover:border-purple-500/30 transition-all duration-300">
-                <span className="iconify text-white group-hover:text-purple-400" data-icon="lucide:twitch" data-width="14"></span>
-              </a>
-              <a href="https://www.youtube.com/@NightPulseEsport" className="cursor-hover group flex items-center justify-center w-8 h-8 rounded-full bg-white/5 border border-white/10 hover:bg-blue-500/20 hover:border-blue-500/30 transition-all duration-300">
-                <span className="iconify text-white group-hover:text-blue-400" data-icon="lucide:youtube" data-width="14"></span>
-              </a>
-            </div>
+            <a href="#" className="cursor-hover group flex items-center justify-center w-8 h-8 rounded-full bg-white/5 border border-white/10 hover:bg-pink-500/20 hover:border-pink-500/30 transition-all duration-300">
+              <span className="iconify text-white group-hover:text-pink-400" data-icon="lucide:instagram" data-width="14"></span>
+            </a>
+            <a href="#" className="cursor-hover group flex items-center justify-center w-8 h-8 rounded-full bg-white/5 border border-white/10 hover:bg-purple-500/20 hover:border-purple-500/30 transition-all duration-300">
+              <span className="iconify text-white group-hover:text-purple-400" data-icon="lucide:twitch" data-width="14"></span>
+            </a>
+            <a href="#" className="cursor-hover group flex items-center justify-center w-8 h-8 rounded-full bg-white/5 border border-white/10 hover:bg-blue-500/20 hover:border-blue-500/30 transition-all duration-300">
+              <span className="iconify text-white group-hover:text-blue-400" data-icon="lucide:youtube" data-width="14"></span>
+            </a>
           </div>
         </div>
       </div>

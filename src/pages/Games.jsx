@@ -13,7 +13,6 @@ const games = [
     color: "indigo",
     desc: "Battle it out in India's most popular mobile battle royale. Daily scrims, tournaments, and leaderboards await your squad.",
     btn: "Learn More",
-    link: "https://www.battlegroundsmobileindia.com/",
   },
   {
     name: "Free Fire",
@@ -21,7 +20,6 @@ const games = [
     color: "orange",
     desc: "Fast-paced survival shooter action. Compete in open cups, custom rooms, and exclusive NightPulse events.",
     btn: "Learn More",
-    link: "https://ff.garena.com/en",
   },
   {
     name: "Chess",
@@ -29,7 +27,6 @@ const games = [
     color: "emerald",
     desc: "Test your mind in rapid, blitz, and classical chess tournaments. Climb the NightPulse chess ladder and earn your title.",
     btn: "Play Chess",
-    link: "/chess",
   },
   {
     name: "Call of Duty Mobile",
@@ -112,31 +109,15 @@ export default function Games() {
                 </div>
                 <h2 className="text-3xl font-bold text-white mb-2 tracking-wide drop-shadow-lg font-heading">{game.name}</h2>
                 <p className="text-gray-200 text-base mb-6 font-medium drop-shadow-sm text-center max-w-xs">{game.desc}</p>
-                <div className="relative">
-                  <a
-                    href={game.link || "#"}
-                    target={game.link?.startsWith("http") ? "_blank" : undefined}
-                    rel={game.link?.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className={`group/btn relative inline-flex items-center justify-center px-8 py-3 rounded-xl text-sm font-semibold uppercase tracking-wide text-white transition-all duration-300 overflow-hidden cursor-hover
-                      ${game.soon ? 'opacity-60 cursor-not-allowed' : ''}
-                      before:absolute before:inset-0 before:bg-gradient-to-r before:from-${game.color}-600 before:to-${game.color}-500 before:rounded-xl before:transition-all before:duration-300 before:opacity-100 hover:before:opacity-80
-                      after:absolute after:inset-0 after:bg-gradient-to-r after:from-${game.color}-400 after:to-${game.color}-300 after:rounded-xl after:opacity-0 after:transition-all after:duration-300 hover:after:opacity-20
-                      shadow-[0_8px_24px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.4)] 
-                      hover:scale-105 hover:-translate-y-1 active:scale-95`}
-                  >
-                    <span className="relative z-10 flex items-center gap-2">
-                      {game.btn}
-                      {!game.soon && (
-                        <svg className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                        </svg>
-                      )}
-                    </span>
-                  </a>
+                <a
+                  href="#"
+                  className={`inline-block px-8 py-2 rounded-full bg-${game.color}-500 text-white text-sm font-semibold uppercase tracking-widest shadow-lg hover:bg-${game.color}-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-${game.color}-400/60 ${game.soon ? 'cursor-not-allowed opacity-60' : ''}`}
+                >
+                  {game.btn}
                   {game.soon && (
-                    <span className="block text-center text-[9px] font-bold text-gray-300 tracking-widest animate-pulse whitespace-nowrap mt-2">COMING SOON</span>
+                    <span className="block mt-2 text-xs font-bold text-gray-400 tracking-widest animate-pulse">COMING SOON</span>
                   )}
-                </div>
+                </a>
               </div>
               {/* Animated floating shapes */}
               <div className="absolute left-4 bottom-4 w-8 h-8 bg-white/10 rounded-full blur-md animate-float-slow" />

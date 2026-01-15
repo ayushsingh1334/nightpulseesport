@@ -5,8 +5,6 @@ import Games from "./pages/Games";
 import Tournaments from "./pages/Tournaments";
 import Highlights from "./pages/Highlights";
 import Join from "./pages/Join";
-import ChessGame from "./games/ChessGame";
-import SecureAndFairGaming from "./pages/SecureAndFairGaming";
 
 function App() {
   return (
@@ -17,8 +15,6 @@ function App() {
         <Route path="/tournaments" element={<Tournaments />} />
         <Route path="/highlights" element={<Highlights />} />
         <Route path="/join" element={<Join />} />
-        <Route path="/chess" element={<ChessGame />} />
-        <Route path="/secure-fair-gaming" element={<SecureAndFairGaming />} />
       </Routes>
     </Router>
   );
