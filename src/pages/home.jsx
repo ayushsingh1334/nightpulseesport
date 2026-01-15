@@ -42,7 +42,7 @@ export default function Home() {
         statusColor: "text-indigo-400"
       },
       {
-        icon: "./icons/Freefire.png",
+        icon: "./icons/freefire.png",
         isImage: true,
         iconColor: "text-orange-400",
         bgColor: "bg-orange-500/10 border-orange-500/20",
@@ -64,7 +64,7 @@ export default function Home() {
     ],
     strategy: [
       {
-        icon: "./icons/chess.png",
+        icon: "./icons/Chess.png",
         isImage: true,
         iconColor: "text-white",
         bgColor: "bg-white/10 border-white/20",
