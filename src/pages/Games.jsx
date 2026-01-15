@@ -9,28 +9,28 @@ import Footer from "../components/Footer";
 const games = [
   {
     name: "BGMI",
-    image: "/icons/bgmi.png",
+    image: "./icons/bgmi.png",
     color: "indigo",
     desc: "Battle it out in India's most popular mobile battle royale. Daily scrims, tournaments, and leaderboards await your squad.",
     btn: "Learn More",
   },
   {
     name: "Free Fire",
-    image: "/icons/freefire.png",
+    image: "./icons/freefire.png",
     color: "orange",
     desc: "Fast-paced survival shooter action. Compete in open cups, custom rooms, and exclusive NightPulse events.",
     btn: "Learn More",
   },
   {
     name: "Chess",
-    image: "/icons/Chess.png", // Placeholder icon
+    image: "./icons/Chess.png", // Placeholder icon
     color: "emerald",
     desc: "Test your mind in rapid, blitz, and classical chess tournaments. Climb the NightPulse chess ladder and earn your title.",
     btn: "Play Chess",
   },
   {
     name: "Call of Duty Mobile",
-    image: "/icons/callofduty.jpg", // Placeholder icon
+    image: "./icons/callofduty.jpg", // Placeholder icon
     color: "yellow",
     desc: "Join the battle in COD Mobile. Tournaments, scrims, and more coming soon!",
     soon: true,

@@ -119,7 +119,7 @@ export default function Tournaments() {
         <div className="mb-16 text-center reveal opacity-0">
           <span className="inline-block mb-4 text-[10px] uppercase tracking-[0.3em] text-indigo-400">BGMI</span>
           <div className="flex items-center justify-center gap-3 mb-2">
-            <img src="/icons/bgmi.png" alt="BGMI" style={{width:36,height:36,borderRadius:'0.7rem',background:'#181a2a',border:'1.5px solid #23244a'}} />
+            <img src="./icons/bgmi.png" alt="BGMI" style={{width:36,height:36,borderRadius:'0.7rem',background:'#181a2a',border:'1.5px solid #23244a'}} />
             <h2 className="font-heading text-4xl md:text-5xl font-semibold text-white tracking-tight">BGMI Tournaments</h2>
           </div>
           <p className="text-gray-500 max-w-xl mx-auto text-base">Full Map, TDM 2v2 Showdown, Monthly Major</p>
@@ -145,7 +145,7 @@ export default function Tournaments() {
         <div className="mb-16 text-center reveal opacity-0">
           <span className="inline-block mb-4 text-[10px] uppercase tracking-[0.3em] text-orange-400">Free Fire</span>
           <div className="flex items-center justify-center gap-3 mb-2">
-            <img src="/icons/freefire.png" alt="Free Fire" style={{width:36,height:36,borderRadius:'0.7rem',background:'#181a2a',border:'1.5px solid #23244a'}} />
+            <img src="./icons/freefire.png" alt="Free Fire" style={{width:36,height:36,borderRadius:'0.7rem',background:'#181a2a',border:'1.5px solid #23244a'}} />
             <h2 className="font-heading text-4xl md:text-5xl font-semibold text-white tracking-tight">Free Fire Tournaments</h2>
           </div>
           <p className="text-gray-500 max-w-xl mx-auto text-base">Weekly Full Map, Weekly Clash Squad, Lone Wolf 2v2, Monthly Full Map Match</p>

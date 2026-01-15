@@ -8,7 +8,7 @@ export default function Navbar() {
           <a href="/" className="cursor-hover group flex items-center gap-2">
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-[0_0_15px_rgba(99,102,241,0.3)] group-hover:scale-110 transition-transform duration-300 overflow-hidden">
               <img
-                src="/icons/LOGO.jpeg"
+                src="./icons/LOGO.jpeg"
                 alt="NightPulse Logo"
                 className="w-full h-full object-cover"
               />
